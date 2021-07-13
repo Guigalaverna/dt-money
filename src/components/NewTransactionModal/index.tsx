@@ -31,7 +31,7 @@ export function NewTransactionModal({
       title,
       amount,
       category,
-      transactionType,
+      type: transactionType,
     };
 
     await api.post("transactions", data);
