@@ -2,12 +2,18 @@ import { Container, Wrapper } from "./styles";
 
 import { Logo } from "../../assets/";
 
-export function Header() {
+interface HeaderProps {
+  onOpenNewTransactionModal: () => void;
+}
+
+export function Header({ onOpenNewTransactionModal }: HeaderProps) {
   return (
     <Container>
       <Wrapper>
         <img src={Logo} alt="dt money logo" />
-        <button type="button">Nova transação</button>
+        <button type="button" onClick={onOpenNewTransactionModal}>
+          Nova transação
+        </button>
       </Wrapper>
     </Container>
   );
