@@ -1,7 +1,8 @@
 import Modal from "react-modal";
 
-import { Container, ButtonsWrapper } from "./styles";
+import { Container, ButtonsWrapper, RadioBox } from "./styles";
 import { Close, Income, Outcome } from "../../assets";
+import { useState } from "react";
 interface NewTransactionModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
@@ -13,6 +14,10 @@ export function NewTransactionModal({
   isOpen,
   onRequestClose,
 }: NewTransactionModalProps) {
+  const [transactionType, setTransactionType] = useState<
+    "income" | "outcome" | ""
+  >("");
+
   return (
     <Modal
       isOpen={isOpen}
@@ -32,12 +37,27 @@ export function NewTransactionModal({
         <input type="text" placeholder="Título" />
         <input type="number" placeholder="Valor" />
         <ButtonsWrapper>
-          <button type="button">
+          <RadioBox
+            type="button"
+            onClick={() => setTransactionType("income")}
+            isActive={transactionType === "income"}
+            activeColor="green"
+          >
             <img src={Income} alt="Entrada" /> <span>Entrada</span>
-          </button>
-          <button type="button">
-            <img src={Outcome} alt="Saída" /> <span>Saída</span>
-          </button>
+          </RadioBox>
+          <RadioBox
+            onClick={() => setTransactionType("outcome")}
+            isActive={transactionType === "outcome"}
+            type="button"
+            activeColor="red"
+          >
+            <img
+              src={Outcome}
+              alt="Saída"
+              onClick={() => setTransactionType("outcome")}
+            />{" "}
+            <span>Saída</span>
+          </RadioBox>
         </ButtonsWrapper>
         <input type="text" placeholder="Categoria" />
         <button type="submit">Cadastrar</button>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { darken } from "polished";
+import { darken, transparentize } from "polished";
 
 export const Container = styled.form`
   h2 {
@@ -61,30 +61,46 @@ export const ButtonsWrapper = styled.div`
   gap: 0.5rem;
 
   button {
-    height: 4rem;
-    border: 1px solid #d7d7d7;
-    border-radius: 0.25rem;
+  }
+`;
 
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 0.2s;
+interface RadioBoxProps {
+  isActive: boolean;
+  activeColor: "green" | "red";
+}
 
-    img {
-      width: 20px;
-      height: 20px;
-    }
+const colors = {
+  red: "#E52E4D",
+  green: "#33CC95",
+};
 
-    span {
-      display: inline-block;
-      margin-left: 1rem;
-      font-size: 1rem;
-      color: var(--text-title);
-    }
+export const RadioBox = styled.button<RadioBoxProps>`
+  height: 4rem;
+  border: 1px solid #d7d7d7;
+  border-radius: 0.25rem;
 
-    &:hover {
-      border-color: ${darken(0.1, "#D7D7D7")};
-    }
+  background: ${(props) =>
+    props.isActive
+      ? transparentize(0.9, colors[props.activeColor])
+      : "transparent"};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  span {
+    display: inline-block;
+    margin-left: 1rem;
+    font-size: 1rem;
+    color: var(--text-title);
+  }
+
+  &:hover {
+    border-color: ${darken(0.1, "#D7D7D7")};
   }
 `;
