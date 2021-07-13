@@ -1,8 +1,9 @@
+import { FormEvent, useState } from "react";
+
 import Modal from "react-modal";
 
 import { Container, ButtonsWrapper, RadioBox } from "./styles";
 import { Close, Income, Outcome } from "../../assets";
-import { useState } from "react";
 interface NewTransactionModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
@@ -18,6 +19,14 @@ export function NewTransactionModal({
     "income" | "outcome" | ""
   >("");
 
+  const [title, setTitle] = useState("");
+  const [amount, setAmount] = useState(0);
+  const [category, setCategory] = useState("");
+
+  function handleCreateNewTransaction(event: FormEvent) {
+    event.preventDefault();
+  }
+
   return (
     <Modal
       isOpen={isOpen}
@@ -32,10 +41,20 @@ export function NewTransactionModal({
       >
         <img src={Close} alt="Fechar modal" />
       </button>
-      <Container>
+      <Container onSubmit={handleCreateNewTransaction}>
         <h2>Cadastrar transação</h2>
-        <input type="text" placeholder="Título" />
-        <input type="number" placeholder="Valor" />
+        <input
+          type="text"
+          placeholder="Título"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Valor"
+          value={amount}
+          onChange={(e) => setAmount(Number(e.target.value))}
+        />
         <ButtonsWrapper>
           <RadioBox
             type="button"
@@ -59,7 +78,12 @@ export function NewTransactionModal({
             <span>Saída</span>
           </RadioBox>
         </ButtonsWrapper>
-        <input type="text" placeholder="Categoria" />
+        <input
+          type="text"
+          placeholder="Categoria"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        />
         <button type="submit">Cadastrar</button>
       </Container>
     </Modal>
