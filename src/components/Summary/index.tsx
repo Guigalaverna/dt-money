@@ -5,14 +5,6 @@ import { Container } from "./styles";
 function Summary() {
   const { transactions } = useTransaction();
 
-  const totalIncome = transactions.reduce((acc, transaction) => {
-    if (transaction.type === "income") {
-      return acc + transaction.amount;
-    }
-
-    return acc;
-  }, 0);
-
   const summary = transactions.reduce(
     (acc, transaction) => {
       if (transaction.type === "income") {
