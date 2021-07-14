@@ -3,9 +3,6 @@
 </p>
 
 <p align="center">	
-   <a href="https://www.linkedin.com/in/leonne-sousa-brito/">
-      <img alt="Guigalaverna" src="https://img.shields.io/badge/-Guigalaverna-5965e0?style=flat&logo=Linkedin&logoColor=white" />
-   </a>
   <img alt="Languages" src="https://img.shields.io/github/languages/count/Guigalaverna/dt-money?color=%235963C5" />
   <img alt="lastcommit" src="https://img.shields.io/github/last-commit/Guigalaverna/dt-money?color=%235761C3" />
   <img alt="License" src="https://img.shields.io/github/license/Guigalaverna/dt-money?color=%235E69D7" />
