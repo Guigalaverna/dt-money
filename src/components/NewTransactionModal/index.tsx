@@ -4,7 +4,7 @@ import Modal from "react-modal";
 
 import { Container, ButtonsWrapper, RadioBox } from "./styles";
 import { Close, Income, Outcome } from "../../assets";
-import { api } from "../../services/api";
+import { useTransaction } from "../../contexts/TransactionsContexts";
 interface NewTransactionModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
@@ -24,17 +24,23 @@ export function NewTransactionModal({
   const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState("");
 
+  const { createTransaction } = useTransaction();
+
   async function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
 
-    const data = {
+    await createTransaction({
       title,
       amount,
       category,
       type: transactionType,
-    };
+    });
 
-    await api.post("transactions", data);
+    setTitle("");
+    setAmount(0);
+    setCategory("");
+    setTransactionType("");
+    onRequestClose();
   }
 
   return (
