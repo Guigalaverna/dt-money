@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Dashboard, Header, NewTransactionModal } from "./components";
+import { TransactionProvider } from "./contexts/TransactionsContexts";
 
 export function App() {
   const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] =
@@ -15,12 +16,14 @@ export function App() {
 
   return (
     <>
-      <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
-      <Dashboard />
-      <NewTransactionModal
-        isOpen={isNewTransactionModalOpen}
-        onRequestClose={handleCloseNewTransactionModal}
-      />
+      <TransactionProvider>
+        <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
+        <Dashboard />
+        <NewTransactionModal
+          isOpen={isNewTransactionModalOpen}
+          onRequestClose={handleCloseNewTransactionModal}
+        />
+      </TransactionProvider>
     </>
   );
 }
