@@ -13,15 +13,19 @@ interface ProviderProps {
 
 interface ContextData {
   transactions: Transaction[];
+  createTransaction: (transaction: TransactionInput) => Promise<void>;
 }
 
 interface Transaction {
   id: number;
   title: string;
   amount: number;
-  type: "income" | "outcome";
+  category: string;
+  type: "income" | "outcome" | "";
   createdAt: string;
 }
+
+type TransactionInput = Omit<Transaction, "id" | "createdAt">;
 
 const Context = createContext({} as ContextData);
 
@@ -36,10 +40,21 @@ export function TransactionProvider({ children }: ProviderProps) {
     })();
   }, []);
 
+  async function createTransaction(transactionInput: TransactionInput) {
+    const response = await api.post("transactions", {
+      ...transactionInput,
+      createdAt: new Date(),
+    });
+    const { transaction } = response.data;
+
+    setTransactions([...transactions, transaction]);
+  }
+
   return (
     <Context.Provider
       value={{
         transactions,
+        createTransaction,
       }}
     >
       {children}
