@@ -12,22 +12,22 @@ new Server({
   seeds(server) {
     server.db.loadData({
       transactions: [
-        {
-          id: 1,
-          title: "Freelancer de Website",
-          amount: 5000,
-          category: "Desenvolvimento",
-          type: "income",
-          createdAt: new Date("2021-02-12 09:00:00"),
-        },
-        {
-          id: 2,
-          title: "Aluguel",
-          amount: 500,
-          category: "Casa",
-          type: "outcome",
-          createdAt: new Date("2021-02-14 15:00:00"),
-        },
+        // {
+        //   id: 1,
+        //   title: "Freelancer de Website",
+        //   amount: 5000,
+        //   category: "Desenvolvimento",
+        //   type: "income",
+        //   createdAt: new Date("2021-02-12 09:00:00"),
+        // },
+        // {
+        //   id: 2,
+        //   title: "Aluguel",
+        //   amount: 500,
+        //   category: "Casa",
+        //   type: "outcome",
+        //   createdAt: new Date("2021-02-14 15:00:00"),
+        // },
       ],
     });
   },
